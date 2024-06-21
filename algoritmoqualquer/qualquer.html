@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Jogos</title>
+</head>
+<body>
+
+    <h1>Loja de jogos</h1>
+
+    <div id="Jogonome"></div>
+    <div id="Jogocategoria"></div>
+    <div id="Jogomultiplayer"></div>
+    <div id="Jogodev"></div>
+    <div id="Jogovalor"></div>
+
+    <br><button onclick="Comprar()">Comprar</button>
+    <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+    <button onclick="exibirCarrinho()">Ver Carrinho</button>
+    <div id="Carrinho"></div>
+    <div id="TotalCompra"></div>
+
+    <script>
+        let Carrinho = [];
+        let totalCompra = 0;
+
+        function adicionarAoCarrinho() {
+            let jogoPlataforma = prompt("Para qual plataforma você deseja adicionar ao carrinho? \n\n1 - Playstation 5\n2 - Xbox One");
+
+            if (jogoPlataforma == "1") {
+                let jogoPS5 = prompt("Os jogos disponíveis para compra são: \n\n1 - Sekiro: Shadows Die Twice\n2 - God of War\n3 - The Last of Us\n4 - Baldur's Gate\n5 - Crash Bandicoot: N-Sane Trilogy");
+
+                switch (jogoPS5) {
+                    case "1":
+                        Carrinho.push({
+                            nome: "Sekiro: Shadows Die Twice",
+                            categoria: "Ação, Soulslike",
+                            multiplayer: "Não",
+                            desenvolvedor: "From Software",
+                            plataforma: "Playstation 5",
+                            valor: 274.00
+                        });
+                        break;
+                    case "2":
+                        Carrinho.push({
+                            nome: "God of War",
+                            categoria: "Ação, Aventura, RPG",
+                            multiplayer: "Não",
+                            desenvolvedor: "Santa Monica",
+                            plataforma: "Playstation 5",
+                            valor: 99.50
+                        });
+                        break;
+                    case "3":
+                        Carrinho.push({
+                            nome: "The Last of Us",
+                            categoria: "Ação, Terror, Tiro",
+                            multiplayer: "Não",
+                            desenvolvedor: "Naughty Dog",
+                            plataforma: "Playstation 5",
+                            valor: 99.50
+                        });
+                        break;
+                    case "4":
+                        Carrinho.push({
+                            nome: "Baldur's Gate",
+                            categoria: "Ação, RPG de turno",
+                            multiplayer: "Não",
+                            desenvolvedor: "Larian Studios",
+                            plataforma: "Playstation 5",
+                            valor: 299.90
+                        });
+                        break;
+                    case "5":
+                        Carrinho.push({
+                            nome: "Crash Bandicoot: N-Sane Trilogy",
+                            categoria: "Aventura, Plataforma, Remake",
+                            multiplayer: "Não",
+                            desenvolvedor: "Vicarious Visions",
+                            plataforma: "Playstation 5",
+                            valor: 179.50
+                        });
+                        break;
+                    default:
+                        alert("Opção inválida.");
+                        break;
+                }
+            } else if (jogoPlataforma == "2") {
+                let jogoXbox = prompt("Os jogos disponíveis para compra são: \n\n1 - Halo Infinite\n2 - Yakuza 0\n3 - Mortal Kombat 11\n4 - The Elder Scrolls V: Skyrim Special Edition\n5 - Stardew Valley");
+
+                switch (jogoXbox) {
+                    case "1":
+                        Carrinho.push({
+                            nome: "Halo Infinite",
+                            categoria: "Tiro em primeira pessoa",
+                            multiplayer: "Sim",
+                            desenvolvedor: "Microsoft Studios",
+                            plataforma: "Xbox One",
+                            valor: 299.00
+                        });
+                        break;
+                    case "2":
+                        Carrinho.push({
+                            nome: "Yakuza 0",
+                            categoria: "Ação, Porradaria",
+                            multiplayer: "Não",
+                            desenvolvedor: "Ryu Ga Gotoku Studio",
+                            plataforma: "Xbox One",
+                            valor: 95.00
+                        });
+                        break;
+                    case "3":
+                        Carrinho.push({
+                            nome: "Mortal Kombat 11",
+                            categoria: "Ação, Luta, Violência detalhada",
+                            multiplayer: "Sim",
+                            desenvolvedor: "NetherRealm Studios",
+                            plataforma: "Xbox One",
+                            valor: 199.99
+                        });
+                        break;
+                    case "4":
+                        Carrinho.push({
+                            nome: "The Elder Scrolls V: Skyrim Special Edition",
+                            categoria: "Mundo Aberto, Ação, Aventura, RPG",
+                            multiplayer: "Não",
+                            desenvolvedor: "Bethesda",
+                            plataforma: "Xbox One",
+                            valor: 149.95
+                        });
+                        break;
+                    case "5":
+                        Carrinho.push({
+                            nome: "Stardew Valley",
+                            categoria: "Simulador de Fazenda, Estratégia, RPG",
+                            multiplayer: "Não",
+                            desenvolvedor: "ConcernedApe",
+                            plataforma: "Xbox One",
+                            valor: 57.79
+                        });
+                        break;
+                    default:
+                        alert("Opção inválida.");
+                        break;
+                }
+            } else {
+                alert("Opção de plataforma inválida.");
+            }
+        }
+
+        function exibirCarrinho() {
+            let carrinhoHTML = "<strong>Itens no Carrinho:</strong><br>";
+
+            totalCompra = 0;
+
+            Carrinho.forEach(item => {
+                carrinhoHTML += `<div><strong>Nome do Jogo:</strong> ${item.nome} <br><strong>Categoria:</strong> ${item.categoria} <br><strong>Multiplayer:</strong> ${item.multiplayer} <br><strong>Desenvolvedor:</strong> ${item.desenvolvedor} <br><strong>Plataforma:</strong> ${item.plataforma} <br><strong>Valor:</strong> ${item.valor.toFixed(2)}</div><br>`;
+                totalCompra += item.valor;
+            });
+
+            document.getElementById("Carrinho").innerHTML = carrinhoHTML;
+            document.getElementById("TotalCompra").innerHTML = `<strong>Total da Compra:</strong> ${totalCompra.toFixed(2)}`;
+        }
+
+        function Comprar() {
+            alert("Compra Confirmada!");
+        }
+    </script>
+
+</body>
+</html>
